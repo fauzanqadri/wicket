@@ -1,0 +1,17 @@
+#sign-in
+  %header
+    %h2 Forgot your password?
+  %hr
+  %section
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f|
+      = render 'layouts/shared/errors', object: f.object
+      .form-group
+        = f.label :email, class: "sr-only"
+        .col-sm-12
+          = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Your email here..."
+      %hr
+      .form-group
+        .col-sm-12
+          %button.btn.btn-primary{type: "submit"}
+            %i.fa.fa-paper-plane
+            Send Reset Password Instruction

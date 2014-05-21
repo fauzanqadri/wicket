@@ -1,0 +1,33 @@
+#sign-in
+  %header
+    %h2 Edit Account
+  %hr
+  %section
+    = form_for(resource, as: resource_name, url: account_registration_path(resource), html: { method: :put, class: "form-horizontal" }) do |f|
+      = render 'layouts/shared/errors', object: f.object
+      .form-group
+        = f.label :email, "Email", class: "control-label col-sm-3"
+        .col-sm-9
+          = f.email_field :email, class: "form-control", placeholder: "New email"
+      .form-group
+        = f.label :password, "Password", class: "control-label col-sm-3"
+        .col-sm-9
+          = f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "New password"
+          %p.help-block Leave blank if you don't want to change it
+      .form-group
+        = f.label :password_confirmation, "Password confirmation", class: "control-label col-sm-3"
+        .col-sm-9
+          = f.password_field :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "New password confirmation"
+          %p.help-block Leave blank if you don't want to change it
+      %legend Current Password
+      .form-group
+        = f.label :current_password, "Current Password", class: "control-label col-sm-3"
+        .col-sm-9
+          = f.password_field :current_password, class: "form-control", autocomplte: "off", placeholder: "Current password"
+          %p.help-block We need your current password for security
+      %hr
+      .form-group
+        .col-sm-12
+          %button.btn.btn-primary{type: "submit"}
+            %i.fa.fa-edit
+            Save

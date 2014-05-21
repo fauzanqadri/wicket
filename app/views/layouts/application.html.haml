@@ -1,0 +1,20 @@
+!!!
+%html{:lang => "id"}
+  %head
+    %title= full_title(yield(:title))
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = yield :specific_css
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = yield :specific_js
+    = csrf_meta_tags
+  %body
+    = render "layouts/shared/header"
+    #flash
+      = render partial: "layouts/shared/flash", locals: {flash: flash}
+    #wrapper.container
+      = yield
+      .row
+        .col-md-8
+          = yield :content
+        .col-md-4
+          = yield :side_content

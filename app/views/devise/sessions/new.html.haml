@@ -1,0 +1,26 @@
+#sign-in
+  %header
+    %h2
+      %i.fa.fa-user
+      Sign in
+  %hr
+  %section
+    = form_for(resource, as: resource_name, url: login_path, html: {role: "form", class: "form-horizontal"}) do |f|
+      .form-group
+        = f.label :login, "Email or Username", class: "sr-only"
+        .col-sm-12
+          = f.text_field :login, class: "form-control", placeholder: "Email or Username"
+      .form-group
+        = f.label :password, "Password", class: "sr-only"
+        .col-sm-12
+          = f.password_field :password, class: "form-control", placeholder: "Password"
+      %hr
+      .form-group
+        .col-sm-6
+          %button.btn.btn-primary{type: "submit"}
+            %i.fa.fa-sign-in
+            Sign in
+        .col-sm-6
+          %label.checkbox-inline.pull-right
+            = f.check_box :remember_me
+            Remember Me

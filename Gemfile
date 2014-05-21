@@ -13,7 +13,24 @@ gem 'foreman'
 gem 'dotenv-rails'
 gem 'unicorn'
 gem 'devise'
-# gem 'therubyracer',  platforms: :ruby
+gem 'journalist', path: "../../journalist"
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sidekiq'
+gem 'sidetiq', github: 'tobiassvn/sidetiq'
+gem 'therubyracer',  platforms: :ruby
+gem 'less-rails'
+gem 'haml-rails'
+gem 'will_paginate', '~> 3.0'
+gem 'cancan'
+#gem 'squeel'
+
+
+# assets
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: "bootstrap3"
+gem 'rails-backbone'
+gem 'font-awesome-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-turbolinks'
 
 group :development do
 	gem 'spring'

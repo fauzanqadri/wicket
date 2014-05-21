@@ -15,12 +15,11 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: <%= ENV['WICKET_DATABASE_ADAPTER'] %>
   host: <%= ENV['WICKET_DATABASE_HOST'] %>
   username: <%= ENV['WICKET_DATABASE_USERNAME'] %>
   password: <%= ENV['WICKET_DATABASE_PASSWORD'] %>
   encoding: unicode
-  reaping_frequency: 10
   pool: 5
 
 development:

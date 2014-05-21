@@ -26,6 +26,19 @@ module Wicket
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.assets.precompile += %w(*.js)
     config.action_mailer.default_url_options = { host: ENV["APP_HOST"] }
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: ENV["APP_HOST"],
+      user_name: ENV["EMAIL_USERNAME"],
+      password: ENV["EMAIL_PASSWORD"],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
   end
 end

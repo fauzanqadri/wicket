@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'webrick'
+require 'webrick/httpproxy'
+
+handler = proc do |req, res|
+  puts "#{'-'*40}\n#{req.unparsed_uri}\n#{'-'*40}\n"
+end
+
+server = WEBrick::HTTPProxyServer.new Port: 3001, ProxyContentHandler: handler
+
+trap 'INT'  do server.shutdown end
+trap 'TERM' do server.shutdown end
+
+server.start

@@ -1,4 +1,30 @@
+require 'sidekiq/web'
+require 'sidetiq/web'
 Rails.application.routes.draw do
+  devise_for :accounts, skip: [:sessions, :registrations], controllers: {passwords: "passwords"}
+  devise_scope :account do
+    get '/login' => 'devise/sessions#new'
+    post '/login' => 'devise/sessions#create'
+    delete '/logout' => 'devise/sessions#destroy'
+    get '/accounts/edit' => 'devise/registrations#edit', as: "edit_account_registration"
+    put "/accounts/:id" => "devise/registrations#update", as: "account_registration"
+  end
+  authenticate :account, lambda {|u| u.role == "SUPERADMIN" } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
+  root "static_pages#index"
+
+  resources :journals, except: :show do
+    resources :journal_accounts, except: :show do
+      post '/enable', action: "set_status"
+      post '/disable', action: "set_status"
+    end
+  end
+
+  get '/journal_status' => 'journals#journal_status'
+  resources :account, controllers: "account"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,5 @@
+- provide(:title, "Home")
+- content_for :side_content do
+  - unless account_signed_in?
+    = render "layouts/shared/sidebars/sign_in"
+  = render "layouts/shared/sidebars/journal_status"
