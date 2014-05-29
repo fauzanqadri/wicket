@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 journals = [
-  {name: "ieee (computer.org)", driver: "ComputerDotOrg"}
+  {name: "ieee (computer.org)", driver: "ComputerDotOrg", url: "http://www.computer.org/portal/web/guest/home", host: "www.computer.org"}
 ]
 
 journals.each do |journal|

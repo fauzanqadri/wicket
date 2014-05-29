@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 require 'sidetiq/web'
 Rails.application.routes.draw do
+
+  default_url_options host: ENV['APP_HOST']
   devise_for :accounts, skip: [:sessions, :registrations], controllers: {passwords: "passwords"}
   devise_scope :account do
     get '/login' => 'devise/sessions#new'
@@ -14,6 +16,17 @@ Rails.application.routes.draw do
   end
   root "static_pages#index"
 
+  constraints subdomain: 'api' do
+    namespace :api, path: '/' do
+      with_options only: :index do |map|
+        map.resources :journals do
+          get "/cookies", action: "get_cookies", on: :member
+        end
+        map.resources :account, controllers: "api/account"
+      end
+    end
+  end
+
   resources :journals, except: :show do
     resources :journal_accounts, except: :show do
       post '/enable', action: "set_status"
@@ -23,7 +36,7 @@ Rails.application.routes.draw do
 
   get '/journal_status' => 'journals#journal_status'
   resources :account, controllers: "account"
-
+  get '/sign_in_status' => 'account#sign_in_status'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

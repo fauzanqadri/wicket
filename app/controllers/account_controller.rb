@@ -1,6 +1,6 @@
 class AccountController < ApplicationController
-  load_and_authorize_resource
-  skip_load_resource :only => [:create]
+  load_and_authorize_resource except: :sign_in_status
+  skip_load_resource :only => [:create, :sign_in_status]
   before_action :set_account, only: [:edit, :update, :destroy]
   before_action :remove_unused_params, only: :update
 
@@ -53,6 +53,12 @@ class AccountController < ApplicationController
     respond_to do |format|
       format.html {redirect_to account_index_url, notice: "Record account berhasil dihapus"}
       format.json{ head :no_content }
+    end
+  end
+
+  def sign_in_status
+    respond_to do |format|
+      format.json
     end
   end
   private

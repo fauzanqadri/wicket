@@ -1,10 +1,10 @@
 stderr_path "./log/unicorn.log"
 stdout_path "./log/unicorn.log"
-# working_directory "/path/to/app/current"
+working_directory "/Volumes/Projects/Ruby/rails/wicket/"
 pid "./tmp/pids/unicorn.pids"
-# listen "/tmp/unicorn.wicket.sock", :backlog => 64
+listen "/tmp/unicorn.journalist.sock", :backlog => 64
 
-listen 3000, :tcp_nopush => true
+# listen 3000, :tcp_nopush => true
 
 worker_processes 2
 
