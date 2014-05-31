@@ -1,0 +1,6 @@
+var a = $("#posts").dataTable();
+a._fnAjaxUpdate();
+$("#flash").append("<%= j render partial: "layouts/shared/flash", locals: {flash: flash}%>");
+$("#flash .alert").each(function(i, e){
+  $(this).delay(i*1000).fadeIn('slow');
+});

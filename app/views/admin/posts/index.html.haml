@@ -1,0 +1,29 @@
+= provide(tittle: "Manage Berita")
+- content_for :specific_js do
+  = javascript_include_tag 'posts', 'data-turbolinks-track' => true
+- content_for :side_content do
+  = render "layouts/shared/sidebars/journal_status"
+
+.row
+  .col-md-6
+    %h1 Manage Berita
+  .col-md-6
+    .action{style: "margin-top: 20px;"}
+      .pull-right
+        = link_to new_admin_post_path, class: "btn btn-lg btn-primary" do
+          %i.fa.fa-pencil
+          Tambah Post
+%hr
+- content_for :content do
+  %table#posts.table.table-bordered{"data-source" => "#{admin_posts_url(format: "json")}"}
+    %thead
+      %tr
+        %th
+          .text-center Judul
+        %th
+          .text-center Tanggal dibuat
+        %th
+          .text-center Published
+        %th
+          .text-center Action
+    %tbody

@@ -1,0 +1,28 @@
+= form_for [:admin, @post], html: {role: "form", class: "form-horizontal"} do |f|
+  = render "layouts/shared/errors", object: f.object
+  .form-group
+    = f.label :title, "Judul", class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :title, class: "form-control", placeholder: "Judul post"
+  .form-group
+    = f.label :tag_list, "Tags", class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :tag_list, class: "form-control", placeholder: "Tags"
+      %span.help-block Separated by comas (,)
+  .form-group
+    = f.label :published, "Publish", class: "col-sm-2 control-label"
+    .col-sm-10
+      .checkbox
+        %label
+          = f.check_box :published, checked: @post.published
+          Publish
+  .form-group
+    .col-sm-12
+      = f.bootsy_area :content, class: "form-control", style: "height: 300px;"
+  %hr
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .pull-right
+        %button.btn.btn-lg.btn-primary{type: "submit"}
+          %i.fa.fa-upload
+          Simpan 

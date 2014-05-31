@@ -1,0 +1,5 @@
+<% content_for :additional_js do %>
+  var a = $("#accounts").dataTable();
+  a._fnAjaxUpdate();
+<%end%>
+<%= render partial: "layouts/shared/javascripts/responder", locals: { selector: "#account-modal"} %>

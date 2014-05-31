@@ -1,0 +1,9 @@
+= provide(:title, "Tambah Post")
+- content_for :specific_js do
+  = javascript_include_tag 'post_editor', 'data-turbolinks-track' => true
+.row
+  .col-md-10
+    %h1 Tambah Post
+  .col-md-2
+%hr
+= render 'form'

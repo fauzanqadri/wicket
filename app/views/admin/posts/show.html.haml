@@ -1,0 +1,44 @@
+= provide(:title, @post.title)
+- content_for :side_content do
+  = render "layouts/shared/sidebars/journal_status"
+
+.row
+  .col-md-10
+    %h1= @post.title
+  .col-md-2
+    - if can? :edit, @post
+      .action{style: "margin-top: 20px;"}
+        .pull-right
+          = link_to edit_admin_post_path(@post), class: "btn btn-lg btn-primary" do
+            %i.fa.fa-edit
+            Edit
+%hr
+- content_for :content do
+  #post
+    #tags
+      .row
+        .col-md-2
+          %p
+            %i.fa.fa-tags
+              Tags
+        .col-md-1
+          %p :
+        .col-md-9
+          %p
+            - @post.tag_list.each do |tag|
+              %span.label.label-success= tag
+    #post-date
+      .row
+        .col-md-2
+          %p
+            %i.fa.fa-calendar
+              Created at
+        .col-md-1
+          %p :
+        .col-md-9
+          %p
+            %span.label.label-primary= @post.created_at.to_formatted_s(:long_ordinal)
+    %hr
+    %article
+      = @post.content.html_safe
+    %hr

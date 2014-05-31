@@ -1,0 +1,44 @@
+- url = @account.new_record? ? admin_account_index_path : admin_account_path(@account)
+#account-modal.modal.fade{tabindex: "-1", role: "dialog", "aria-labelledby" => "accountModalLabel", "aria-hidden" => "true", "data-backdrop" => "static", "data-keyboard" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", "data-dismiss" => "modal", "aria-hidden" => "true"} &times;
+        %h4#accountModalLabel.modal-title
+          = @account.new_record? ? "Tambah Account" : "Edit Account"
+      = form_for @account, url: url, remote: true, html: {role: "form", class: "form-horizontal"} do |f|
+        .modal-body
+          = render "layouts/shared/errors", object: f.object
+          .form-group
+            = f.label :full_name, "Nama Lengkap", class: "col-sm-3 control-label"
+            .col-sm-9
+              = f.text_field :full_name, class: "form-control", placeholder: "Nama Lengkap", autocomplete: "off"
+          .form-group
+            = f.label :email, "Email", class: "col-sm-3 control-label"
+            .col-sm-9
+              = f.email_field :email, class: "form-control", placeholder: "Email", autocomplete: "off"
+          .form-group
+            = f.label :username, "Username", class: "control-label col-sm-3"
+            .col-sm-9
+              = f.text_field :username, class: "form-control", placeholder: "Username", autocomplete: "off"
+          .form-group
+            = f.label :role, "Role", class: "control-label col-sm-3"
+            .col-sm-9
+              = f.select :role, options_for_select(role_select_helper, selected: @account.role), {}, {class: "form-control"}
+          .form-group
+            = f.label :password, "Password", class: "control-label col-sm-3"
+            .col-sm-9
+              = f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "Password"
+          .form-group
+            = f.label :password_confirmation, "Password Confirmation", class: "control-label col-sm-3"
+            .col-sm-9
+              = f.password_field :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "Password Confirmation"
+          .modal-footer
+            %button.btn.btn-primary{type: "submit"}
+              %i.fa.fa-upload
+              Simpan
+            %button.btn.btn-default{type: "button", "data-dismiss" => "modal"}
+              %i.fa.fa-times
+              Cancel
+
+
