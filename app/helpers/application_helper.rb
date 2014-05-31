@@ -9,7 +9,7 @@ module ApplicationHelper
     css_class = {'notice' => "alert alert-info", 'success' => "alert alert-success", 'error' => "alert alert-danger", 'alert' => "alert alert-danger"}
     css_class[level]
   end
-  
+
   def flash_icon level
     css_class = {'notice' => "fa fa-rocket", 'success' => "fa fa-check", 'error' => "fa fa-times", 'alert' => "fa fa-times"}
     css_class[level]
@@ -23,4 +23,5 @@ module ApplicationHelper
   def role_select_helper
     Account::ROLE.map {|role| [role.downcase, role]}
   end
+
 end

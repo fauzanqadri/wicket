@@ -1,5 +1,8 @@
 - if object.errors.any?
-  - object.errors.full_messages.each do |msg|
+  #error-explenation
     .alert.alert-danger
-      %strong
-        .text-center= msg
+      The form contains #{pluralize(object.errors.count, "error")}.
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li * #{msg}.
+  %hr

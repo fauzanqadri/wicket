@@ -22,8 +22,9 @@ gem 'less-rails'
 gem 'haml-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'cancan'
-#gem 'squeel'
-
+gem 'acts-as-taggable-on'
+gem 'bootsy'
+gem 'truncate_html'
 
 # assets
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: "bootstrap3"
@@ -31,6 +32,8 @@ gem 'rails-backbone'
 gem 'font-awesome-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-turbolinks'
+gem 'rails-bootstrap-markdown', git: 'git://github.com/fauzanqadri/rails-bootstrap-markdown.git', branch: 'generators'
+gem 'bootstrap_tokenfield_rails'
 
 group :development do
 	gem 'spring'

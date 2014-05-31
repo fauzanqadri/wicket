@@ -10,9 +10,11 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         - if can? :read, Journal
-          %li= link_to "Journal", journals_path
+          %li= link_to "Journal", admin_journals_path
         - if can? :read, Account
-          %li= link_to "Account", account_index_path
+          %li= link_to "Account", admin_account_index_path
+        - if can? :manage, Post
+          %li= link_to "Post", admin_posts_path
       - unless account_signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Forgot Password ?", new_account_password_path

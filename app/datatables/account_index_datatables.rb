@@ -40,8 +40,8 @@ class AccountIndexDatatables
 
   def act account
     action = []
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_account_path(account), class: "btn btn-xs btn-info", remote: true))
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), account, class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_admin_account_path(account), class: "btn btn-xs btn-info", remote: true))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), url_helpers.admin_account_path(account), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
     content_tag :div, class: "text-center" do
       content_tag :div, class: "btn-group" do
         raw(action.join(""))

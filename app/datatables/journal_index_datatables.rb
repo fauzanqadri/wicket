@@ -39,14 +39,14 @@ class JournalIndexDatatables
 
   def manage_journal_account journal
     content_tag :div, class: "text-center" do
-      raw(link_to(content_tag(:i, "", class: "fa fa-rocket"), url_helpers.journal_journal_accounts_path(journal), class: "btn btn-xs btn-primary"))
+      raw(link_to(content_tag(:i, "", class: "fa fa-rocket"), url_helpers.admin_journal_journal_accounts_path(journal), class: "btn btn-xs btn-primary"))
     end
   end
 
   def act journal
     action = []
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_journal_path(journal), class: "btn btn-xs btn-info", remote: true))
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), journal, class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_admin_journal_path(journal), class: "btn btn-xs btn-info", remote: true))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), url_helpers.admin_journal_path(journal), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
     content_tag :div, class: "text-center" do
       content_tag :div, class: "btn-group" do
         raw(action.join(""))

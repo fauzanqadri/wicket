@@ -11,10 +11,21 @@ Rails.application.routes.draw do
     get '/accounts/edit' => 'devise/registrations#edit', as: "edit_account_registration"
     put "/accounts/:id" => "devise/registrations#update", as: "account_registration"
   end
+
   authenticate :account, lambda {|u| u.role == "SUPERADMIN" } do
     mount Sidekiq::Web => "/sidekiq"
+    namespace :admin do
+      resources :journals, except: :show do
+        resources :journal_accounts, except: :show do
+          with_options action: "set_status" do |map|
+            map.post '/enable', action: "set_status"
+            map.post '/disable', action: "set_status"
+          end
+        end
+      end
+      resources :account
+    end
   end
-  root "static_pages#index"
 
   constraints subdomain: 'api' do
     namespace :api, path: '/' do
@@ -27,69 +38,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :journals, except: :show do
-    resources :journal_accounts, except: :show do
-      post '/enable', action: "set_status"
-      post '/disable', action: "set_status"
+  authenticate :account, lambda {|u| u.role == "SUPERADMIN" || u.role == "ADMIN"} do
+    namespace :admin do
+      resources :posts do
+        with_options on: :member, action: 'change_status' do |map|
+          map.post '/publish'
+          map.post '/unpublish'
+        end
+      end
     end
   end
 
-  get '/journal_status' => 'journals#journal_status'
-  resources :account, controllers: "account"
-  get '/sign_in_status' => 'account#sign_in_status'
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get '/journal_status' => 'static_pages#journal_status'
+  get '/sign_in_status' => 'static_pages#sign_in_status'
+  resources :posts, only: [:index, :show]
+  root "static_pages#index"
 end

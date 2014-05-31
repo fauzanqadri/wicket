@@ -43,9 +43,9 @@ class JournalAccountsIndexDatatables
 
   def set_status_journal_account journal_account
     link = if journal_account.enable
-             raw(link_to(content_tag(:i, "", class: "fa fa-check"), url_helpers.journal_journal_account_disable_path(journal, journal_account), class: "btn btn-xs btn-success", remote: true, method: :post))
+             raw(link_to(content_tag(:i, "", class: "fa fa-check"), url_helpers.admin_journal_journal_account_disable_path(journal, journal_account), class: "btn btn-xs btn-success", remote: true, method: :post))
            else
-             raw(link_to(content_tag(:i, "", class: "fa fa-times"), url_helpers.journal_journal_account_enable_path(journal, journal_account), class: "btn btn-xs btn-danger", remote: true, method: :post))
+             raw(link_to(content_tag(:i, "", class: "fa fa-times"), url_helpers.admin_journal_journal_account_enable_path(journal, journal_account), class: "btn btn-xs btn-danger", remote: true, method: :post))
            end
     content_tag :div, class: "text-center" do
       link
@@ -54,8 +54,8 @@ class JournalAccountsIndexDatatables
 
   def act journal_account
     action = []
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_journal_journal_account_path(journal, journal_account), class: "btn btn-xs btn-info", remote: true))
-    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), url_helpers.journal_journal_account_path(journal, journal_account), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-edit"), url_helpers.edit_admin_journal_journal_account_path(journal, journal_account), class: "btn btn-xs btn-info", remote: true))
+    action << raw(link_to(content_tag(:i, "", class: "fa fa-trash-o"), url_helpers.admin_journal_journal_account_path(journal, journal_account), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Confirm deleting ?"}))
     content_tag :div, class: "text-center" do
       content_tag :div, class: "btn-group" do
         raw(action.join(""))

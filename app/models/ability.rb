@@ -30,6 +30,7 @@ class Ability
   def admin
     default_user
     can :manage, Account
+    can :manage, Post
   end
 
   def superadmin

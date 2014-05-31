@@ -12,6 +12,8 @@
  *
  *= require font-awesome
  *= require dataTables/jquery.dataTables.bootstrap3
+ *= require bootstrap-tokenfield
+ *= require bootsy
  *= require_tree .
  *= require_self
  */

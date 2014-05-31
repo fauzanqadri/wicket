@@ -1,4 +1,4 @@
-$(document).delegate "#journal-modal, #journal-account-modal, #account-modal", 'hidden.bs.modal', (e) ->
+$(document).delegate "#journal-modal, #journal-account-modal, #account-modal, #post-modal", 'hidden.bs.modal', (e) ->
   $(e.target).remove()
 
 $(document).ready ->
