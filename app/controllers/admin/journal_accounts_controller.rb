@@ -69,7 +69,7 @@ class Admin::JournalAccountsController < ApplicationController
   def destroy
     @journal_account.destroy
     respond_to do |format|
-      format.html { redirect_to journal_journal_accounts_url(@journal), notice: 'Record journal account berhasil di hapus' }
+      format.html { redirect_to admin_journal_journal_accounts_url(@journal), notice: 'Record journal account berhasil di hapus' }
       format.json { head :no_content }
     end
   end

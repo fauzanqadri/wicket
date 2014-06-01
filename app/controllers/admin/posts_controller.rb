@@ -34,7 +34,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html {redirect_to @post, notice: "Record post berhasil dibuat"}
+        format.html {redirect_to admin_post_url(@post), notice: "Record post berhasil dibuat"}
       else
         format.html { render :new }
       end
@@ -46,7 +46,7 @@ class Admin::PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html {redirect_to @post, notice: "Record post berhasil diupdate"}
+        format.html {redirect_to admin_post_url(@post), notice: "Record post berhasil diupdate"}
       else
         format.html { render :edit }
       end
@@ -58,7 +58,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Record post berhasil dihapus' }
+      format.html { redirect_to admin_posts_url, notice: 'Record post berhasil dihapus' }
       format.json { head :no_content }
     end
   end

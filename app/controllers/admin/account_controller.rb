@@ -51,7 +51,7 @@ class Admin::AccountController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html {redirect_to account_index_url, notice: "Record account berhasil dihapus"}
+      format.html {redirect_to admin_account_index_url, notice: "Record account berhasil dihapus"}
       format.json{ head :no_content }
     end
   end

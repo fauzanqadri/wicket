@@ -70,7 +70,7 @@ class PostIndexDatatables
   end
 
   def page
-    params[:iDisplatStart].to_i/per_page + 1
+    params[:iDisplayStart].to_i/per_page + 1
   end
 
   def per_page

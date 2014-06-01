@@ -3,3 +3,9 @@
   - unless account_signed_in?
     = render "layouts/shared/sidebars/sign_in"
   = render "layouts/shared/sidebars/journal_status"
+
+- content_for :specific_js do
+  = javascript_include_tag 'static_pages', 'data-turbolinks-track' => true
+
+- content_for :content do
+  #home

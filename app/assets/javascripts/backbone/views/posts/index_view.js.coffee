@@ -7,14 +7,22 @@ class Wicket.Views.Posts.IndexView extends Backbone.View
     @options.posts.bind('reset', @addAll)
 
   addAll: () =>
+    @$("#paginate").empty()
+    @$("#posts").empty()
+    pagination = new Wicket.Views.Paginations.IndexView(page_info: @options.posts.pageInfo(), action: this)
+    @$("#paginate").html(pagination.render().el)
     @options.posts.each(@addOne)
+
+  next: =>
+    @options.posts.nextPage()
+
+  prev: =>
+    @options.posts.prevPage()
 
   addOne: (post) =>
     view = new Wicket.Views.Posts.PostView({model : post})
-    @$("tbody").append(view.render().el)
+    @$("#posts").append(view.render().el)
 
   render: =>
-    $(@el).html(@template(posts: @options.posts.toJSON() ))
-    @addAll()
-
+    $(@el).html(@template())
     return this

@@ -1,6 +1,52 @@
-<td><%= title %></td>
-<td><%= content %></td>
-
-<td><a href="#/<%= id %>">Show</td>
-<td><a href="#/<%= id %>/edit">Edit</td>
-<td><a href="#/<%= id %>/destroy" class="destroy">Destroy</a></td>
+<h3><%= title %></h3>
+<hr />
+<div class="info">
+  <div class="tags">
+    <div class="row">
+      <div class="col-sm-2">
+        <p>
+          <i class="fa fa-tags"></i>
+          Tags
+        </p>
+      </div>
+      <div class="col-sm-1">
+        <p>:</p>
+      </div>
+      <div class="col-sm-9">
+        <% $.each(tag_list, function(index, value){%>
+          <span class="label label-success"><%= value %></span>
+        <%});%>
+      </div>
+    </div>
+  </div>
+  <div class="created-at">
+    <div class="row">
+      <div class="col-sm-2">
+        <p>
+          <i class="fa fa-calendar"></i>
+          Created at
+        </p>
+      </div>
+      <div class="col-sm-1">
+        <p>:</p>
+      </div>
+      <div class="col-sm-9">
+        <span class="label label-primary"><%= new Date(created_at) %></span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<article>
+  <%= content %>
+</article>
+<hr />
+<div class="action">
+  <div class="pull-right">
+    <a href="<%= post_url %>" class="btn btn-default">
+      More
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>

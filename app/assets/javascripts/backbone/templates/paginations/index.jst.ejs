@@ -1,0 +1,11 @@
+<% if (prev) { %>
+  <li class="previous"><a href="#" id="prev">&laquo; Prev</a></li>
+<%}else{%>
+  <li class="disabled previous"><a>&laquo; Prev</a></li>
+<%}%>
+<span class="label label-info"><%= range[0] %>..<%= range[1] %> of <%= total_records %></span>
+<%if(next){ %>
+  <li class="next"><a href="#" id="next">Next &raquo;</a></li>
+<%}else{%>
+  <li class="disabled next"><a>Next &raquo;</a></li>
+<%}%>

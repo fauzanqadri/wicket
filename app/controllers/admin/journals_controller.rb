@@ -61,7 +61,7 @@ class Admin::JournalsController < ApplicationController
   def destroy
     @journal.destroy
     respond_to do |format|
-      format.html { redirect_to journals_url, notice: 'Record journal berhasil dihapus' }
+      format.html { redirect_to admin_journals_url, notice: 'Record journal berhasil dihapus' }
       format.json { head :no_content }
     end
   end
